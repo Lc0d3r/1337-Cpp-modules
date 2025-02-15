@@ -8,9 +8,6 @@ $(NAME): $(OBJ)
 
 all: $(NAME)
 
-%.o: %.cpp
-	$(COMPILER) $(CPPFLAGS) -c $< -o $@
-
 clean:
 	rm -rf $(OBJ)
 

@@ -26,25 +26,16 @@ void put_str_10(std::string str)
 {
     int i = 0;
 
-    if (str.length() == 10)
-        std::cout << str;
-    else if (str.length() < 10)
+    if (str.length() > 10)
     {
-        while (i + str.length() < 10)
-        {
-             std::cout << " ";
-             i++;
-        }
-        std::cout << str;
+        while (i < 9)
+            std::cout << str[i++];
+        std::cout << ".";
     }
     else
     {
-        while (i < 9)
-        {
-            std::cout << str[i];
-            i++;
-        }
-        std::cout << ".";
+        std::cout << std::setw(10);
+        std::cout << str;
     }
 }
 
@@ -53,7 +44,7 @@ void Contact::put_data(int index)
     if (first_name.empty())
         return ;
     std::cout << "|";
-    std::cout << "         ";
+    std::cout << std::setw(10);
     std::cout << index;
     std::cout << "|";
     put_str_10(first_name);

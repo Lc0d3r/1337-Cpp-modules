@@ -7,7 +7,7 @@ int add(PhoneBook *phonebook, int index)
     return 1;
 }
 
-int search(PhoneBook phonebook)
+void search(PhoneBook phonebook)
 {
     int i = 0;
     int index = 0;
@@ -22,20 +22,26 @@ int search(PhoneBook phonebook)
         phonebook.contacts[i].put_data(i);
         i++;
     }
-    std::cout << "Enter index :";
-    std::cin >> index;
-    if(std::cin.fail())
+    while (1)
     {
-        std::cin.clear();
-        std::cin.ignore(1000, '\n');
-        std::cout << "Error: Not a number\n";
-        return 0;
+        std::cout << "Enter index :";
+        std::cin >> index;
+        if(std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout << "Error: Not a number\n";
+        }
+        else
+        {
+            std::cin.ignore(1000, '\n');
+            break;
+        }
     }
     if (index >= 8)
         std::cout << "None\n";
     else
         phonebook.contacts[index].put_all_data();
-    return 1;
 }
 
 int main(void)
