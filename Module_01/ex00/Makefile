@@ -1,5 +1,6 @@
 CC=c++
-CPPFLAGS=Wall -Wextra -Werror -std=c++98
+CPPFLAGS=-Wall -Wextra -Werror -std=c++98
+OBJ=main.o Zombie.o newZombie.o randomChump.o
 NAME=a.out
 
 all:$(NAME)
