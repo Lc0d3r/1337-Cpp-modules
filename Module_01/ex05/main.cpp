@@ -7,6 +7,6 @@ int main(){
     zfat.complain("WARNING");
     zfat.complain("DEBUG");
     zfat.complain("INFO");
-    zfat.complain("gg");
+    zfat.complain("ggg");
     return 0;
 }
