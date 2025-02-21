@@ -21,7 +21,9 @@ void Harl::warning() {
 }
 
 void Harl::complain( std::string level ){
-    debug();
+
+    void (Harl::*ptr)();
+    ptr = &Harl::debug;
     info();
     error();
     warning();
