@@ -2,7 +2,7 @@
 #define FIXED_HPP
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 class Fixed
 {
@@ -23,7 +23,7 @@ class Fixed
         float toFloat( void ) const;
         int toInt( void ) const;
         
-        friend std::ostream& operator<<(std::ostream& os, const Fixed& fix);        // << Operator overload
+        friend std::ostream& operator<<(std::ostream& os, const Fixed& fix);  // << Operator overload
 };
 
 #endif

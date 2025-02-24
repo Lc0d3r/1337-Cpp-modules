@@ -15,7 +15,7 @@ Fixed::Fixed(const int n)
 Fixed::Fixed(const float n)
 {
     std::cout << "Float constructor called\n";
-    this->fixed_point = n * 256;
+    this->fixed_point = roundf(n * 256);
 }
 
 
