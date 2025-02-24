@@ -14,7 +14,7 @@ class Fixed
         Fixed(const int n);// Parameterized Constructor
         Fixed(const float n);
         Fixed(const Fixed& other); // Copy Constructor
-        void operator=(const Fixed& other); // copy Assignment Operator overload
+        Fixed&  operator=(const Fixed& other); // copy Assignment Operator overload
         ~Fixed(); // Destructor
         
         // and some member func

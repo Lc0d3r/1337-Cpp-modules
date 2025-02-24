@@ -12,7 +12,7 @@ class Fixed
         Fixed(); // Default Constructor
         // Parameterized Constructor
         Fixed(const Fixed& other); // Copy Constructor
-        void operator=(const Fixed& other); // copy Assignment Operator
+        Fixed& operator=(const Fixed& other); // copy Assignment Operator
         ~Fixed(); // Destructor
 
         // and some member func
