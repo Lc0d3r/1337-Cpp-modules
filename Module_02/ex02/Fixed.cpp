@@ -110,9 +110,6 @@ Fixed Fixed::operator-(const Fixed& f)
 }
 Fixed Fixed::operator*(const Fixed& f)
 {
-    std::cout << "test\n";
-    std::cout << this->toFloat()<< std::endl;
-    std::cout << f.toFloat()<< std::endl;
     return Fixed(this->toFloat() * f.toFloat());
 }
 Fixed Fixed::operator/(const Fixed& f)
