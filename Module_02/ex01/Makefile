@@ -1,4 +1,4 @@
-CC=c++
+CC=g++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98
 OBJ=main.o Fixed.o
 NAME=a.out

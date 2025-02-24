@@ -6,10 +6,24 @@ Fixed::Fixed()
     this->fixed_point = 0;
 }
 
+Fixed::Fixed(const int n)
+{
+    std::cout << "Int constructor called\n";
+    this->fixed_point = n * 256;
+}
+
+Fixed::Fixed(const float n)
+{
+    std::cout << "Float constructor called\n";
+    this->fixed_point = n * 256;
+}
+
+
+
 Fixed::Fixed(const Fixed& other)
 {
     std::cout << "Copy constructor called\n";
-    *this = other;
+    fixed_point = other.fixed_point;
 }
 
 Fixed::~Fixed()
@@ -36,4 +50,18 @@ int Fixed::getRawBits( void ) const
 void Fixed::setRawBits( int const raw )
 {
     fixed_point = raw;
+}
+
+float Fixed::toFloat( void ) const {
+    return (float)((float)this->fixed_point / (float)256);
+}
+
+int Fixed::toInt( void ) const {
+    return (this->fixed_point / 256);
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fix)
+{
+    os << fix.toFloat();
+    return os;
 }
