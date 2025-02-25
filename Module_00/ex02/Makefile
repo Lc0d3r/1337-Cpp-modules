@@ -6,6 +6,9 @@ NAME=a.out
 $(NAME): $(OBJ)
 	$(COMPILER) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
+%.o: %.cpp
+	$(COMPILER) $(CPPFLAGS) -c $< -o $@
+
 all: $(NAME)
 
 clean:
