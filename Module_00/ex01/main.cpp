@@ -54,6 +54,7 @@ int main(void)
     {
         std::cout << "The program only accepts ADD, SEARCH and EXIT : ";
         std::cin >> input;
+        std::cin.ignore(1000, '\n');
         if (input == "ADD")
         {
             if (i == 8)

@@ -8,18 +8,23 @@ void Contact::set_data()
     std::cout << "Enter a first name : ";
     std::cin >> input;
     first_name = input;
+    std::cin.ignore(1000, '\n');
     std::cout << "Enter a last name : ";
     std::cin >> input;
     last_name = input;
+    std::cin.ignore(1000, '\n');
     std::cout << "Enter a nickname : ";
     std::cin >> input;
     nickname = input;
+    std::cin.ignore(1000, '\n');
     std::cout << "Enter a phone number : ";
     std::cin >> input;
     phone_number = input;
+    std::cin.ignore(1000, '\n');
     std::cout << "Enter a darkest secret : ";
     std::cin >> input;
     darkest_secret = input;
+    std::cin.ignore(1000, '\n');
 }
 
 void put_str_10(std::string str)
