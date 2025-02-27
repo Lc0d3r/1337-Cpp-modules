@@ -3,11 +3,10 @@
 
 int add(PhoneBook *phonebook, int index)
 {
-    phonebook->contacts[index].set_data();
-    return 1;
+    return phonebook->contacts[index].set_data();
 }
 
-void search(PhoneBook phonebook)
+int search(PhoneBook phonebook)
 {
     int i = 0;
     int index = 0;
@@ -26,6 +25,8 @@ void search(PhoneBook phonebook)
     {
         std::cout << "Enter index :";
         std::cin >> index;
+        if (std::cin.eof())
+            return 1;
         if(std::cin.fail())
         {
             std::cin.clear();
@@ -42,6 +43,7 @@ void search(PhoneBook phonebook)
         std::cout << "None\n";
     else
         phonebook.contacts[index].put_all_data();
+    return 0;
 }
 
 int main(void)
@@ -54,6 +56,8 @@ int main(void)
     {
         std::cout << "The program only accepts ADD, SEARCH and EXIT : ";
         std::cin >> input;
+        if (std::cin.eof())
+            return 1;
         std::cin.ignore(1000, '\n');
         if (input == "ADD")
         {
@@ -61,11 +65,14 @@ int main(void)
                 i  = 0;
             if (add(&phonebook, i))
                 i++;
+            else
+                return 1;
         }
         else if (input == "EXIT")
             break;
         else if(input == "SEARCH")
-            search(phonebook);
+            if (search(phonebook))
+                return 1;
     }
     return 0;
 }
