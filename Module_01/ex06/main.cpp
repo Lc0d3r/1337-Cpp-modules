@@ -19,13 +19,10 @@ int main(int argc, char *argv[]){
     {
         case 0:
             zfat.complain("DEBUG");
-            // Fallthrough
         case 1:
             zfat.complain("INFO");
-            // Fall through
         case 2:
             zfat.complain("WARNING");
-            // Fall through
         case 3:
             zfat.complain("ERROR");
             break;
