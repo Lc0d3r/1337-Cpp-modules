@@ -16,6 +16,7 @@ int main(int argc, char *argv[]){
     rfile.open (rfilename.c_str());
     if (!myfile.is_open()) {
         std::cout << "Error: while opening the file named  <" << filename << ">" << std::endl;
+        return 1;
     }
     while ( getline (myfile,line) ) {
         search_and_replace(line, s1, s2);
@@ -26,4 +27,5 @@ int main(int argc, char *argv[]){
     }
     myfile.close();
     rfile.close();
+    return 0;
 }

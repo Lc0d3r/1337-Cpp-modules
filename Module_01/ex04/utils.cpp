@@ -7,8 +7,9 @@ void search_and_replace(std::string& line, std::string s1, std::string s2)
     while (1)
     {
         found = line.find(s1, pos);
+
         pos = found + s2.length();
-        if (found != std::string::npos)
+        if (found != std::string::npos && !s1.empty())
         {
             line.erase(found, s1.length());
             line.insert(found, s2);
