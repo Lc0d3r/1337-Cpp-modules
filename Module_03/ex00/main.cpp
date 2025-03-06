@@ -2,8 +2,8 @@
 
 int main()
 {
-    ClapTrap r1("r1");
-    ClapTrap r2("r2");
+    ClapTrap r1;
+    ClapTrap r2;
 
     r1.attack("r2");
     r2.takeDamage(9);
