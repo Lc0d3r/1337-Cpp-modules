@@ -1,12 +1,32 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(): name("default"), hit_points(10), energy_points(10), attack_damage(0) {
+	std::cout << "ClapTrap Default Constructor called" << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string name) : name(name), hit_points(10), energy_points(10), attack_damage(0) {
-    std::cout << "ClapTrap Constructor executing." << std::endl ;
+    std::cout << "ClapTrap Constructor called for " << this->name << std::endl ;
 };
 
 ClapTrap::~ClapTrap(){
-    std::cout << "ClapTrap Destructor executing." << std::endl ;
+    std::cout << "ClapTrap Destructor called for " << this->name << std::endl ;
 };
+
+ClapTrap::ClapTrap(const ClapTrap &copy)
+{
+    std::cout << "ClapTrap Copy constructor called for " << this->name << std::endl ;
+    *this = copy;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap &src)
+{
+    std::cout << "ClapTrap assignment operator called for " << this->name << std::endl ;
+    this->name = src.name;
+    this->attack_damage = src.attack_damage;
+    this->hit_points = src.hit_points;
+    this->energy_points = src.energy_points;
+    return *this;
+}
 
 void ClapTrap::attack(const std::string& target) {
     if (this->hit_points >= 1 && this->energy_points >= 1)
