@@ -15,7 +15,7 @@ class ClapTrap
         ClapTrap();
         // par constructor
         ClapTrap(std::string name);
-        // copy Constructo
+        // copy Constructor
         ClapTrap(const ClapTrap &copy);
         // Assignment Operator
 		ClapTrap &operator=(const ClapTrap &src);
