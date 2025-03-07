@@ -1,4 +1,4 @@
-CXX=g++
+CXX=c++
 CXXFLAGS=-Wall -Wextra -Werror -std=c++98
 OBJ=main.o Fixed.o
 NAME=a.out
