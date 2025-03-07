@@ -1,4 +1,4 @@
-Cxx=g++
+CXX=c++
 CXXFLAGS=-Wall -Wextra -Werror -std=c++98
 OBJ=main.o Fixed.o
 NAME=a.out
@@ -7,7 +7,7 @@ all:$(NAME)
 
 
 $(NAME):$(OBJ)
-	$(Cxx) $(CXXFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)
