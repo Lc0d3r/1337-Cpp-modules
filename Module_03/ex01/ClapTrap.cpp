@@ -46,7 +46,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
 void ClapTrap::beRepaired(unsigned int amount) {
     if (this->energy_points >= 1)
     {
-        std::cout << "ClapTrap " << this->name << " repaired "<< "with amout of "<< amount <<std::endl;
+        std::cout << "ClapTrap " << this->name << " repaired "<< "with amount of "<< amount <<std::endl;
         this->hit_points += amount;
         this->energy_points--;
         return;
