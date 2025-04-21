@@ -17,9 +17,9 @@ int main()
     std::cout << "i type: " << i->getType() << std::endl;
 
     std::cout << "\nSounds:" << std::endl;
-    i->makeSound(); // Expected: Cat sound
-    j->makeSound(); // Expected: Dog sound
-    meta->makeSound(); // Expected: Animal sound
+    i->makeSound();
+    j->makeSound(); 
+    meta->makeSound();
 
     delete meta;
     delete j;
@@ -33,8 +33,8 @@ int main()
     std::cout << "wrongCat type: " << wrongCat->getType() << std::endl;
 
     std::cout << "\nSounds:" << std::endl;
-    wrongMeta->makeSound();     // Expected: WrongAnimal sound
-    wrongCat->makeSound();      // Expected: WrongAnimal sound, due to missing virtual function
+    wrongMeta->makeSound();
+    wrongCat->makeSound();
 
     delete wrongMeta;
     delete wrongCat;

@@ -1,12 +1,16 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal(): type("WrongAnimal") {};
+WrongAnimal::WrongAnimal(): type("WrongAnimal") {
+    std::cout << "WrongAnimal: Default constructor called" << std::endl;
+};
 
 WrongAnimal::WrongAnimal(const WrongAnimal& other) {
     *this = other;
 }
 
-WrongAnimal::~WrongAnimal() {};
+WrongAnimal::~WrongAnimal() {
+    std::cout << "WrongAnimal: Destructor called" << std::endl;
+};
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other) {
     this->type = other.type;

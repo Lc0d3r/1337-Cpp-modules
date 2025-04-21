@@ -1,12 +1,16 @@
 #include "Animal.hpp"
 
-Animal::Animal(): type("Animal") {};
+Animal::Animal(): type("Animal") {
+    std::cout << "Animal: Default constructor called" << std::endl;
+};
 
 Animal::Animal(const Animal& other) {
     *this = other;
 }
 
-Animal::~Animal() {};
+Animal::~Animal() {
+    std::cout << "Animal: Destructor called" << std::endl;
+};
 
 Animal& Animal::operator=(const Animal& other) {
     this->type = other.type;
