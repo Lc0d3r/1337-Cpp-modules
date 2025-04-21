@@ -1,43 +1,38 @@
-#include <iostream>
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 
-int main()
-{
-    std::cout << "=== Correct Polymorphism Test ===" << std::endl;
-    const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
 
-    std::cout << "\nTypes:" << std::endl;
-    std::cout << "j type: " << j->getType() << std::endl;
-    std::cout << "i type: " << i->getType() << std::endl;
 
-    std::cout << "\nSounds:" << std::endl;
-    i->makeSound();
-    j->makeSound(); 
-    meta->makeSound();
+int main(){
 
-    delete meta;
-    delete j;
-    delete i;
+    //check if the copy constructor is deep copy
+    Dog a;
+    Dog b = a;
 
-    std::cout << "\n=== Wrong Polymorphism Test ===" << std::endl;
-    const WrongAnimal* wrongMeta = new WrongAnimal();
-    const WrongAnimal* wrongCat = new WrongCat();
+    Animal *savana[10];
 
-    std::cout << "\nTypes:" << std::endl;
-    std::cout << "wrongCat type: " << wrongCat->getType() << std::endl;
+    //instances of dogs
+    for(int i = 0; i < 5; i++){
+        savana[i] = new Dog();
+    }
 
-    std::cout << "\nSounds:" << std::endl;
-    wrongMeta->makeSound();
-    wrongCat->makeSound();
+    //instances of cats
+    for(int i = 5 ; i < 9 ; i++){
+        savana[i] = new Cat();
+    }
+    //instances of animal
+    savana[9] = new Animal();
+    
 
-    delete wrongMeta;
-    delete wrongCat;
+    //testing the sound
+    savana[0]->makeSound();
+    savana[5]->makeSound();
+    savana[9]->makeSound();
 
+    //deleting the animals
+    for(int i = 0; i < 10; i++){
+        delete savana[i];
+    }
     return 0;
 }

@@ -1,6 +1,6 @@
 CXX=c++
 CXXFLAGS=-Wall -Wextra -Werror -std=c++98
-OBJ=main.o Animal.o Cat.o Dog.o WrongAnimal.o WrongCat.o
+OBJ=main.o Animal.o Cat.o Dog.o WrongAnimal.o WrongCat.o Brain.o
 NAME=a.out
 
 all:$(NAME)
