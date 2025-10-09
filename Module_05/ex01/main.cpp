@@ -1,52 +1,58 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main() {
-    std::cout << "=== Valid Bureaucrat ===" << std::endl;
+    std::cout << "=== Valid Form Creation ===" << std::endl;
     try {
-        Bureaucrat b("Alice", 42);
-        std::cout << b << std::endl;
-
-        std::cout << "Incrementing grade..." << std::endl;
-        b.incrementGrade();
-        std::cout << b << std::endl;
-
-        std::cout << "Decrementing grade..." << std::endl;
-        b.decrementGrade();
-        std::cout << b << std::endl;
+        Form passport("Passport", 50, 25);
+        std::cout << passport << std::endl;
     } catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception during form creation: " << e.what() << std::endl;
     }
 
-    std::cout << "\n=== Grade Too Low at Creation ===" << std::endl;
+    std::cout << "\n=== Invalid Form Creation (Too High) ===" << std::endl;
     try {
-        Bureaucrat c("Bob", 151);
-        std::cout << c << std::endl;
+        Form impossible("Impossible", 0, 25);
+        std::cout << impossible << std::endl;
     } catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception during form creation: " << e.what() << std::endl;
     }
 
-    std::cout << "\n=== Grade Too High at Creation ===" << std::endl;
+    std::cout << "\n=== Invalid Form Creation (Too Low) ===" << std::endl;
     try {
-        Bureaucrat d("Charlie", 0);
-        std::cout << d << std::endl;
+        Form lazy("Lazy", 120, 151);
+        std::cout << lazy << std::endl;
     } catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception during form creation: " << e.what() << std::endl;
     }
 
-    std::cout << "\n=== Increment past upper limit ===" << std::endl;
+    std::cout << "\n=== Bureaucrat Signing Tests ===" << std::endl;
     try {
-        Bureaucrat e("Daisy", 1);
-        std::cout << e << std::endl;
-        e.incrementGrade(); // should throw
-    } catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
+        Bureaucrat alice("Alice", 30);
+        Bureaucrat bob("Bob", 100);
+        Form tax("Tax Form", 50, 70);
 
-    std::cout << "\n=== Decrement past lower limit ===" << std::endl;
-    try {
-        Bureaucrat f("Edward", 150);
-        std::cout << f << std::endl;
-        f.decrementGrade(); // should throw
+        std::cout << tax << std::endl;
+
+        std::cout << "\n-- Bob tries to sign --" << std::endl;
+        try {
+            tax.beSigned(bob);
+            std::cout << "Bob signed the form successfully." << std::endl;
+        } catch (std::exception &e) {
+            std::cout << "Bob failed to sign: " << e.what() << std::endl;
+        }
+
+        std::cout << "\n-- Alice tries to sign --" << std::endl;
+        try {
+            tax.beSigned(alice);
+            std::cout << "Alice signed the form successfully." << std::endl;
+        } catch (std::exception &e) {
+            std::cout << "Alice failed to sign: " << e.what() << std::endl;
+        }
+
+        std::cout << "\nFinal Form Status:" << std::endl;
+        std::cout << tax << std::endl;
+
     } catch (std::exception &e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
