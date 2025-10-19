@@ -3,6 +3,7 @@
 AForm::AForm() : name("Default"), isSigned(false), signedGrade(150), executeGrade(150) {}
 
 AForm::AForm(const std::string name, const int signedGrade, const int executeGrade): name(name), signedGrade(signedGrade), executeGrade(executeGrade) {
+    isSigned = false;
     if (this->signedGrade < 1 || this->executeGrade < 1)
         throw GradeTooHighException();
     if (this->signedGrade > 150 || this->executeGrade > 150)

@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : name("Default"), grade(150) {};
 
@@ -53,4 +54,26 @@ std::ostream& operator<<(std::ostream& out, const Bureaucrat& b) {
     out << b.getName() << ", bureaucrat grade " 
     << b.getGrade() << ".";
     return out;
+}
+
+void Bureaucrat::executeForm(AForm const & form) {
+    if (this->getGrade() <= form.getExecuteGrade() && form.getIsSigned())
+        try {
+            form.execute(*this);
+            std::cout << this->getName() << " executed " << form.getName() << std::endl;
+        } catch (std::exception& e) {
+            std::cout << this->getName() << " couldn't execute " << form.getName() << " because " << e.what() << "." << std::endl;
+            return;
+        }
+    else 
+        std::cout << this->getName() << " can't execute " << form.getName() << std::endl;
+}
+
+void Bureaucrat::signForm(AForm &form) {
+    try {
+        form.beSigned(*this);
+        std::cout << this->getName() << " signed " << form.getName() << std::endl;
+    }catch (std::exception& e) {
+        std::cout << this->getName() << " couldn’t sign " << form.getName() << " because " << e.what() << "." << std::endl;
+    }
 }

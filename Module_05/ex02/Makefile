@@ -1,6 +1,6 @@
 CXX=c++
 CXXFLAGS=-Wall -Wextra -Werror -std=c++98
-OBJ=main.o Bureaucrat.o AForm.o ShrubberyCreationForm.o RobotomyRequestForm.o
+OBJ=main.o Bureaucrat.o AForm.o ShrubberyCreationForm.o RobotomyRequestForm.o PresidentialPardonForm.o
 NAME=a.out
 
 all:$(NAME)
