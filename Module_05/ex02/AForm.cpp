@@ -52,12 +52,12 @@ std::ostream& operator<<(std::ostream & os, const AForm & AForm)
 
 const char * AForm::GradeTooHighException::what() const throw()
 {
-    return "AForm grade is too high!";
+    return "Form grade is too high!";
 }
 
 const char * AForm::GradeTooLowException::what() const throw()
 {
-    return "AForm grade is too low!";
+    return "Form grade is too low!";
 }
 
 void AForm::execute(Bureaucrat const & executor) const {
