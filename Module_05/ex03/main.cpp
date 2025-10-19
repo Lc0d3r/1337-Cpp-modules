@@ -3,186 +3,91 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 #include <iostream>
 
-void printSeparator(const std::string& title) {
-    std::cout << "\n========== " << title << " ==========\n" << std::endl;
-}
-
-void testShrubberyCreation() {
-    printSeparator("SHRUBBERY CREATION FORM TESTS");
-    
-    try {
-        Bureaucrat lowGrade("LowGrade", 150);
-        Bureaucrat midGrade("MidGrade", 140);
-        Bureaucrat highGrade("HighGrade", 1);
-        ShrubberyCreationForm form("garden");
-        
-        std::cout << form << std::endl;
-        
-        // Test: Try to execute unsigned form
-        std::cout << "\n--- Test: Execute unsigned form ---" << std::endl;
-        try {
-            highGrade.executeForm(form);
-        } catch (std::exception& e) {
-            std::cout << "Exception: " << e.what() << std::endl;
-        }
-        
-        // Test: Try to sign with too low grade
-        std::cout << "\n--- Test: Sign with too low grade (150) ---" << std::endl;
-        lowGrade.signForm(form);
-        
-        // Test: Sign with sufficient grade
-        std::cout << "\n--- Test: Sign with sufficient grade (140) ---" << std::endl;
-        midGrade.signForm(form);
-        
-        // Test: Execute with too low grade
-        std::cout << "\n--- Test: Execute with too low grade (140) ---" << std::endl;
-        midGrade.executeForm(form);
-        
-        // Test: Execute with sufficient grade
-        std::cout << "\n--- Test: Execute with sufficient grade (1) ---" << std::endl;
-        highGrade.executeForm(form);
-        std::cout << "Check for 'garden_shrubbery' file in current directory!" << std::endl;
-        
-    } catch (std::exception& e) {
-        std::cout << "Unexpected exception: " << e.what() << std::endl;
-    }
-}
-
-void testRobotomyRequest() {
-    printSeparator("ROBOTOMY REQUEST FORM TESTS");
-    
-    try {
-        Bureaucrat lowGrade("LowBureaucrat", 100);
-        Bureaucrat midGrade("MidBureaucrat", 50);
-        Bureaucrat highGrade("HighBureaucrat", 1);
-        RobotomyRequestForm form("Bender");
-        
-        std::cout << form << std::endl;
-        
-        // Test: Try to sign with too low grade
-        std::cout << "\n--- Test: Sign with too low grade (100) ---" << std::endl;
-        lowGrade.signForm(form);
-        
-        // Test: Sign with sufficient grade
-        std::cout << "\n--- Test: Sign with sufficient grade (50) ---" << std::endl;
-        midGrade.signForm(form);
-        
-        // Test: Execute with too low grade
-        std::cout << "\n--- Test: Execute with too low grade (50) ---" << std::endl;
-        midGrade.executeForm(form);
-        
-        // Test: Execute multiple times to see randomness (50% success rate)
-        std::cout << "\n--- Test: Execute 5 times to see randomness ---" << std::endl;
-        for (int i = 0; i < 5; i++) {
-            std::cout << "Attempt " << (i + 1) << ": ";
-            highGrade.executeForm(form);
-        }
-        
-    } catch (std::exception& e) {
-        std::cout << "Unexpected exception: " << e.what() << std::endl;
-    }
-}
-
-void testPresidentialPardon() {
-    printSeparator("PRESIDENTIAL PARDON FORM TESTS");
-    
-    try {
-        Bureaucrat lowGrade("Junior", 50);
-        Bureaucrat midGrade("Senior", 20);
-        Bureaucrat highGrade("Director", 1);
-        PresidentialPardonForm form("Arthur Dent");
-        
-        std::cout << form << std::endl;
-        
-        // Test: Try to sign with too low grade
-        std::cout << "\n--- Test: Sign with too low grade (50) ---" << std::endl;
-        lowGrade.signForm(form);
-        
-        // Test: Sign with sufficient grade
-        std::cout << "\n--- Test: Sign with sufficient grade (20) ---" << std::endl;
-        midGrade.signForm(form);
-        
-        // Test: Execute with too low grade
-        std::cout << "\n--- Test: Execute with too low grade (20) ---" << std::endl;
-        midGrade.executeForm(form);
-        
-        // Test: Execute with sufficient grade
-        std::cout << "\n--- Test: Execute with sufficient grade (1) ---" << std::endl;
-        highGrade.executeForm(form);
-        
-    } catch (std::exception& e) {
-        std::cout << "Unexpected exception: " << e.what() << std::endl;
-    }
-}
-
-void testAllFormsComparison() {
-    printSeparator("ALL FORMS COMPARISON");
-    
-    try {
-        Bureaucrat god("God", 1);
-        
-        ShrubberyCreationForm shrubbery("home");
-        RobotomyRequestForm robotomy("Employee");
-        PresidentialPardonForm pardon("Criminal");
-        
-        std::cout << shrubbery << std::endl;
-        std::cout << robotomy << std::endl;
-        std::cout << pardon << std::endl;
-        
-        std::cout << "\n--- Signing all forms with grade 1 bureaucrat ---" << std::endl;
-        god.signForm(shrubbery);
-        god.signForm(robotomy);
-        god.signForm(pardon);
-        
-        std::cout << "\n--- Executing all forms ---" << std::endl;
-        god.executeForm(shrubbery);
-        god.executeForm(robotomy);
-        god.executeForm(pardon);
-        
-    } catch (std::exception& e) {
-        std::cout << "Unexpected exception: " << e.what() << std::endl;
-    }
-}
-
-void testEdgeCases() {
-    printSeparator("EDGE CASES");
-    
-    try {
-        // Test: Bureaucrat with exact required grade for signing
-        std::cout << "--- Test: Exact grade for signing Shrubbery (145) ---" << std::endl;
-        Bureaucrat exact("Exact", 145);
-        ShrubberyCreationForm form("test");
-        exact.signForm(form);
-        std::cout << form << std::endl;
-        
-        // Test: Bureaucrat with exact required grade for execution
-        std::cout << "\n--- Test: Exact grade for executing Shrubbery (137) ---" << std::endl;
-        Bureaucrat exactExec("ExactExec", 137);
-        exactExec.executeForm(form);
-        
-        // Test: Try to sign already signed form
-        std::cout << "\n--- Test: Sign already signed form ---" << std::endl;
-        exact.signForm(form);
-        
-    } catch (std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-}
-
 int main() {
-    std::cout << "╔════════════════════════════════════════════╗" << std::endl;
-    std::cout << "║   C++ MODULE 05 - EXERCISE 02 TEST SUITE  ║" << std::endl;
-    std::cout << "╚════════════════════════════════════════════╝" << std::endl;
+    std::cout << "=== TEST 1: Subject Example ===" << std::endl;
+    {
+        Intern someRandomIntern;
+        AForm* rrf;
+        
+        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+        
+        if (rrf) {
+            Bureaucrat boss("Boss", 1);
+            boss.signForm(*rrf);
+            boss.executeForm(*rrf);
+            delete rrf;
+        }
+    }
     
-    testShrubberyCreation();
-    testRobotomyRequest();
-    testPresidentialPardon();
-    testAllFormsComparison();
-    testEdgeCases();
+    std::cout << "\n=== TEST 2: All Three Form Types ===" << std::endl;
+    {
+        Intern intern;
+        Bureaucrat ceo("CEO", 1);
+        
+        AForm* form1 = intern.makeForm("shrubbery creation", "home");
+        AForm* form2 = intern.makeForm("robotomy request", "target");
+        AForm* form3 = intern.makeForm("presidential pardon", "criminal");
+        
+        if (form1) {
+            ceo.signForm(*form1);
+            ceo.executeForm(*form1);
+            delete form1;
+        }
+        
+        if (form2) {
+            ceo.signForm(*form2);
+            ceo.executeForm(*form2);
+            delete form2;
+        }
+        
+        if (form3) {
+            ceo.signForm(*form3);
+            ceo.executeForm(*form3);
+            delete form3;
+        }
+    }
     
-    printSeparator("ALL TESTS COMPLETED");
+    std::cout << "\n=== TEST 3: Invalid Form Names ===" << std::endl;
+    {
+        Intern intern;
+        AForm* form;
+        
+        form = intern.makeForm("invalid form", "target");
+        if (!form)
+            std::cout << "Correctly returned NULL for invalid form\n" << std::endl;
+        
+        form = intern.makeForm("", "target");
+        if (!form)
+            std::cout << "Correctly returned NULL for empty form name\n" << std::endl;
+        
+        form = intern.makeForm("coffee maker", "office");
+        if (!form)
+            std::cout << "Correctly returned NULL for unknown form\n" << std::endl;
+    }
+    
+    std::cout << "\n=== TEST 4: Grade Requirements ===" << std::endl;
+    {
+        Intern intern;
+        Bureaucrat lowGrade("Junior", 100);
+        Bureaucrat highGrade("Senior", 1);
+        
+        AForm* pardon = intern.makeForm("presidential pardon", "prisoner");
+        
+        if (pardon) {
+            std::cout << *pardon << std::endl;
+            
+            lowGrade.signForm(*pardon);  // Should fail
+            highGrade.signForm(*pardon); // Should succeed
+            highGrade.executeForm(*pardon);
+            
+            delete pardon;
+        }
+    }
+    
+    std::cout << "\n=== All tests completed ===" << std::endl;
     
     return 0;
 }
