@@ -1,27 +1,21 @@
 #include <iostream>
 #include <string>
-#include "iter.hpp" // Your iter function template
+#include "iter.hpp"
 
-// --- Auxiliary Functions (Functions to be passed to iter) ---
-
-// 1. Function taking a non-const reference to modify the element (for numeric types)
 template <typename T>
 void incrementElement(T& element) {
     ++element; 
 }
 
-// 2. Renamed, specific function for std::string (AVOIDS OVERLOAD AMBIGUITY)
 void modifyString(std::string& str) {
     str += "_UPDATED";
 }
 
-// 3. Function taking a const reference to display the element
 template <typename T>
 void printElement(const T& element) {
     std::cout << "[" << element << "] ";
 }
 
-// --- Main Test Function ---
 int main() {
     
     // =======================================================
