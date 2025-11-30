@@ -1,7 +1,7 @@
 ARGS=
 CXX=c++
 CXXFLAGS=-Wall -Wextra -Werror -std=c++98
-OBJ=main.o 
+OBJ=main.o
 NAME=a.out
 
 all:$(NAME)
