@@ -2,5 +2,11 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <deque>
+#include <exception>
+#include <string>
 
-int printErr(std::string err);
+void containsOnlyDigits(const std::string& str);
+void errorCheck(int size, char **str);
+void sort_vect(int size, char **str);

@@ -3,6 +3,7 @@
 .vscode
 *.json
 .o
+PmergeMe
 
 
 # Compiled Object files

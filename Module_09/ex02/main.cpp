@@ -1,8 +1,12 @@
 #include "PmergeMe.hpp"
 
 int main(int argc, char **argv) {
-    if (argc == 1)
-        return printErr("Error: Use the program like this => ./PmergeMe \"some ints\"");
-    (void)argv;
+    try {
+        errorCheck(argc, argv);
+        sort_vect(argc, argv);
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
     return 0;
 }
