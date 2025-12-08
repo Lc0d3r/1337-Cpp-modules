@@ -21,22 +21,3 @@ void errorCheck(int size, char **str) {
         containsOnlyDigits(str[i]);
     }
 }
-
-void sort_vect(int size, char **str) {
-    std::vector<int> vec;
-    for (int i = 1; i < size; ++i) {
-        vec.push_back(std::atol(str[i]));
-    }
-    std::cout << "Before: " ;
-    for (size_t i = 0; i < vec.size(); ++i) {
-        std::cout << vec[i] << " ";
-    }
-    std::cout << std::endl;
-    std::cout << "After: " ;
-    for (size_t i = 0; i < vec.size(); ++i) {
-        std::cout << vec[i] << " ";
-    }
-    std::cout << std::endl;
-    std::cout << "Time to process a range of " << size - 1 << " elements with " << "an std::vector : ";
-    std::cout << "Time to process a range of " << size - 1 << " elements with " << "an std::deque : ";
-}
