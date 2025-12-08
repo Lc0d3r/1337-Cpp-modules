@@ -44,7 +44,7 @@ T fordJohnsonVect(T &input) {
 }
 
 template <typename T>
-double sort_vect(int size, char **str) {
+double sort_vect(int size, char **str, bool print) {
     clock_t start = clock();
     T vect;
     T res;
@@ -53,17 +53,18 @@ double sort_vect(int size, char **str) {
     }
     res = fordJohnsonVect<T>(vect);
     clock_t end = clock();
-    
-    std::cout << "Before: " ;
-    for (size_t i = 0; i < vect.size(); ++i) {
-        std::cout << vect[i] << " ";
+    if (print) {
+        std::cout << "Before: " ;
+        for (size_t i = 0; i < vect.size(); ++i) {
+            std::cout << vect[i] << " ";
+        }
+        std::cout << std::endl;
+        std::cout << "After: " ;
+        for (size_t i = 0; i < res.size(); ++i) {
+            std::cout << res[i] << " ";
+        }
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
-    std::cout << "After: " ;
-    for (size_t i = 0; i < res.size(); ++i) {
-        std::cout << res[i] << " ";
-    }
-    std::cout << std::endl;
     double time_mc = (double)(end - start) / CLOCKS_PER_SEC * 1000000;
     return time_mc;
 }
