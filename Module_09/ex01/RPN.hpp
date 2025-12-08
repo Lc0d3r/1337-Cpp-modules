@@ -9,5 +9,4 @@
 #include <string>
 #include <cstdlib>
 
-void parse(char *str);
 void evaluateRPN(char *str);

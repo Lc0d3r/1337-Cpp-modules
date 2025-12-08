@@ -5,7 +5,6 @@ int main(int argc, char **argv) {
         (void)argv;
         if (argc < 2)
             throw std::runtime_error("Error: number of args is not enough!");
-        parse(argv[1]);
         evaluateRPN(argv[1]);
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
