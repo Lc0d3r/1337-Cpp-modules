@@ -5,6 +5,8 @@
 .o
 PmergeMe
 RPN
+*.csv
+*.txt
 
 # Compiled Object files
 *.slo
