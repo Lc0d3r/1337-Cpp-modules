@@ -83,17 +83,40 @@ void validateDate(std::string date, std::string dateToPrint) {
 float calculate(std::map<std::string, std::string> db, std::string date, double value) {
     std::map<std::string, std::string>::iterator it = db.lower_bound(date);
 
-    if (it == db.end() || it->first != date) {
-        if (it == db.begin()) {
-            throw std::runtime_error("Error: no earlier date available.");
-        }
-        --it;
+    if (it == db.end()) {
+        it = --db.end();
+    } else if (it->first != date) {
+        if (it != db.begin())
+            --it;
     }
     float rate;
     std::stringstream ss;
     ss << it->second;
     ss >> rate;
     return rate * value;
+}
+
+std::string formatResult(float f) {
+    std::ostringstream oss;
+
+    // with default
+    oss << std::fixed << std::setprecision(2) << f;
+    std::string s = oss.str();
+    
+    // Remove trailing zeros
+    size_t dot = s.find('.');
+    if (dot != std::string::npos) {
+        int i = s.length() - 1;
+        while (i > (int)dot && s[i] == '0') {
+            i--;
+        }
+        s.erase(i + 1);
+        if (s[s.length() - 1] == '.') {
+            s.erase(s.length() - 1);
+        }
+    }
+    
+    return s;
 }
 
 void process(std::map<std::string, std::string> db, const char *filename) {
@@ -134,7 +157,7 @@ void process(std::map<std::string, std::string> db, const char *filename) {
         try {
             validateDate(date, date);
             float result = calculate(db, date, value);
-            std::cout << date << " => " << value << " = " << std::fixed << std::setprecision(2) << result << std::endl;
+            std::cout << date << " => " << value << " = " << formatResult(result) << std::endl;
         } catch (std::exception &e) {
             std::cout << e.what() << std::endl;
         }
