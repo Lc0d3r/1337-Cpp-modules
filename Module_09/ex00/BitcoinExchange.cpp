@@ -1,4 +1,5 @@
 #include "BitcoinExchange.hpp"
+#include <iomanip>
 
 
 std::map<std::string, std::string> loadDatabase(const char *filename, char n) {
@@ -39,21 +40,19 @@ void checkDateParts(std::string date, std::string dateToPrint) {
     std::stringstream ss;
     ss << date;
 
-    int num;
-    ss >> num;
-    if (ss.fail())
+    int year, month, day;
+    ss >> year >> month >> day;
+    if (ss.fail() && !ss.eof())
         throw std::runtime_error("Error: bad input => " + dateToPrint);
-
-    ss >> num;
-    if (ss.fail())
+    if (year < 0)
         throw std::runtime_error("Error: bad input => " + dateToPrint);
-    if (num > 12 || num < 1)
+    if (month < 1 || month > 12)
         throw std::runtime_error("Error: bad input => " + dateToPrint);
-
-    ss >> num;
-    if (ss.fail())
+    if (day < 1 || day > 31)
         throw std::runtime_error("Error: bad input => " + dateToPrint);
-    if (num > 31 || num < 1)
+    if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+        throw std::runtime_error("Error: bad input => " + dateToPrint);
+    if (month == 2 && day > 29)
         throw std::runtime_error("Error: bad input => " + dateToPrint);
 }
 
@@ -120,7 +119,7 @@ void process(std::map<std::string, std::string> db, const char *filename) {
         ss << input;
         ss >> date >> value;
 
-        if (ss.fail()){
+        if (ss.fail() && !ss.eof()) {
             std::cerr << "Error: bad input => " << date << std::endl;
             continue;
         }
@@ -135,7 +134,7 @@ void process(std::map<std::string, std::string> db, const char *filename) {
         try {
             validateDate(date, date);
             float result = calculate(db, date, value);
-            std::cout << date << " => " << value << " = " << result << std::endl;
+            std::cout << date << " => " << value << " = " << std::fixed << std::setprecision(2) << result << std::endl;
         } catch (std::exception &e) {
             std::cout << e.what() << std::endl;
         }
